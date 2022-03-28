@@ -48,136 +48,140 @@ export const LoginSignUp = () => {
       });
   };
 
-  return (
-    <div className="loginSignUp">
-      <form className="signUp" onSubmit={handleSubmit}>
-        <h1>SignUp</h1>
-        <label>name</label>
-        <input
-          type="text"
-          className="name"
-          onChange={(event) => {
-            setName(event.target.value);
-          }}
-          required
-        />
-        <br />
-        <label>password</label>
-        <input
-          type="text"
-          className="password"
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-          required
-        />
-        <br />
-        <select
-          value={""}
-          className="location"
-          onChange={(event) => {
-            setLocation(event.target.value);
-          }}
-        >
-          <option value=""></option>
-          <option value="bangalore">Bangalore</option>
-          <option value="kolkata">Kolkata</option>
-          <option value="delhi">Delhi</option>
-          <option value="mumbai">Mumbai</option>
-        </select>
-        <label>Interests</label>
-        <br />
-        <label>technology</label>
-        <input
-          type="checkbox"
-          className="technology"
-          onChange={(event) => {
-            setInterests(event.target.className);
-          }}
-        />
-        <br />
-        <label>food</label>
-        <input
-          type="checkbox"
-          className="food"
-          onChange={(event) => {
-            setInterests(event.target.className);
-          }}
-        />
-        <br />
-        <label>movies</label>
-        <input
-          type="checkbox"
-          className="movies"
-          onChange={(event) => {
-            setInterests(event.target.className);
-          }}
-        />
-        <br />
-        <label>culture</label>
-        <input
-          type="checkbox"
-          className="culture"
-          onChange={(event) => {
-            setInterests(event.target.className);
-          }}
-        />
-        <br />
-        <label>art</label>
-        <input
-          type="checkbox"
-          className="art"
-          onChange={(event) => {
-            setInterests(event.target.className);
-          }}
-        />
-        <br />
-        <label>drama</label>
-        <input
-          type="checkbox"
-          className="drama"
-          onChange={(event) => {
-            setInterests(event.target.className);
-          }}
-        />
-        <br />
-        <label>image</label>
-        <input
-          type="text"
-          className="image"
-          onChange={(event) => {
-            setImage(event.target.value);
-          }}
-          required
-        />
-        <br />
-        <input type="submit" className="submitSignUpForm" />
-      </form>
+  if (!user) {
+    return (
+      <div className="loginSignUp">
+        <form className="signUp" onSubmit={handleSubmit}>
+          <h1>SignUp</h1>
+          <label>name</label>
+          <input
+            type="text"
+            className="name"
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
+            required
+          />
+          <br />
+          <label>password</label>
+          <input
+            type="text"
+            className="password"
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+            required
+          />
+          <br />
+          <select
+            value={""}
+            className="location"
+            onChange={(event) => {
+              setLocation(event.target.value);
+            }}
+          >
+            <option value=""></option>
+            <option value="bangalore">Bangalore</option>
+            <option value="kolkata">Kolkata</option>
+            <option value="delhi">Delhi</option>
+            <option value="mumbai">Mumbai</option>
+          </select>
+          <label>Interests</label>
+          <br />
+          <label>technology</label>
+          <input
+            type="checkbox"
+            className="technology"
+            onChange={(event) => {
+              setInterests(event.target.className);
+            }}
+          />
+          <br />
+          <label>food</label>
+          <input
+            type="checkbox"
+            className="food"
+            onChange={(event) => {
+              setInterests(event.target.className);
+            }}
+          />
+          <br />
+          <label>movies</label>
+          <input
+            type="checkbox"
+            className="movies"
+            onChange={(event) => {
+              setInterests(event.target.className);
+            }}
+          />
+          <br />
+          <label>culture</label>
+          <input
+            type="checkbox"
+            className="culture"
+            onChange={(event) => {
+              setInterests(event.target.className);
+            }}
+          />
+          <br />
+          <label>art</label>
+          <input
+            type="checkbox"
+            className="art"
+            onChange={(event) => {
+              setInterests(event.target.className);
+            }}
+          />
+          <br />
+          <label>drama</label>
+          <input
+            type="checkbox"
+            className="drama"
+            onChange={(event) => {
+              setInterests(event.target.className);
+            }}
+          />
+          <br />
+          <label>image</label>
+          <input
+            type="text"
+            className="image"
+            onChange={(event) => {
+              setImage(event.target.value);
+            }}
+            required
+          />
+          <br />
+          <input type="submit" className="submitSignUpForm" />
+        </form>
 
-      <form className="login" onSubmit={handleLogin}>
-        <h1>Login</h1>
-        <label>name</label>
-        <input
-          type="text"
-          className="name"
-          onChange={(event) => {
-            setName(event.target.value);
-          }}
-          required
-        />
-        <br />
-        <label>password</label>
-        <input
-          type="text"
-          className="password"
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-          required
-        />
-        <br />
-        <input type="submit" className="submitLoginForm" />
-      </form>
-    </div>
-  );
+        <form className="login" onSubmit={handleLogin}>
+          <h1>Login</h1>
+          <label>name</label>
+          <input
+            type="text"
+            className="name"
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
+            required
+          />
+          <br />
+          <label>password</label>
+          <input
+            type="text"
+            className="password"
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+            required
+          />
+          <br />
+          <input type="submit" className="submitLoginForm" />
+        </form>
+      </div>
+    );
+  } else {
+    return <h1>You are logged in</h1>;
+  }
 };
