@@ -36,12 +36,15 @@ export const LoginSignUp = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .get("http://localhost:8080/users", {
+      .post("http://localhost:8080/users", {
         name: name,
         password: password,
       })
       .then((response) => {
         console.log(response);
+        localStorage.setItem("userLoginDetails", JSON.stringify(response.data));
+        const localStorageData = localStorage.getItem("userLoginDetails");
+        dispatch(userLogin(localStorageData));
       });
   };
 
