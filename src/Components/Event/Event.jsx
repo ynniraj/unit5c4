@@ -10,6 +10,16 @@ export const Event = () => {
     });
   }, []);
 
+  const handleDataSubmit = (id) => {
+    axios
+      .post("http://localhost:8080/meetups", {
+        subscribed: [id],
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+  };
+
   return (
     <div className="eventContainer">
       {
@@ -27,6 +37,15 @@ export const Event = () => {
                 <p className="date">{el.date}</p>
                 <p className="time">{el.time}</p>
               </div>
+              <button className="unsubscribe">Unsubscribe</button>
+              <button
+                className="subscribe"
+                onClick={() => {
+                  handleDataSubmit(el.id);
+                }}
+              >
+                Subscribe
+              </button>
             </div>
           );
         })
@@ -38,10 +57,6 @@ export const Event = () => {
 
       {/* only one of the buttons should be visible depending on the status of subcription
       Hint : use conditional rendering */}
-      <button className="unsubscribe">Unsubscribe</button>
-      <button className="subscribe" onClick={() => {}}>
-        Subscribe
-      </button>
     </div>
   );
 };

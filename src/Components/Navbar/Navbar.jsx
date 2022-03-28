@@ -9,6 +9,9 @@ export const Navbar = () => {
       <Link className="navbarLoginSignUp" to={"/loginsignup"}>
         Login/Sign Up
       </Link>
+      <Link className="Events" to={"/addmeetup/events"}>
+        Events
+      </Link>
     </div>
   );
 };
