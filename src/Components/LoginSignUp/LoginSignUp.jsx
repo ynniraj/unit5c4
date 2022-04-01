@@ -2,8 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogin } from "../../Redux/Login/action";
-
+import { useNavigate } from "react-router-dom";
 export const LoginSignUp = () => {
+  const navigate = useNavigate();
   const user = useSelector((store) => store.user.user);
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -19,35 +20,38 @@ export const LoginSignUp = () => {
         name: name,
         password: password,
         location: location,
-        interests: interests,
+        interests: [interests],
         Image: Image,
       })
       .then((response) => {
         console.log(response.data);
         localStorage.setItem("userLoginDetails", JSON.stringify(response.data));
-        const localStorageData = localStorage.getItem("userLoginDetails");
-        dispatch(userLogin(localStorageData));
       });
   };
-
-  const localStorageData = localStorage.getItem("userLoginDetails");
-  dispatch(userLogin(localStorageData));
 
   const handleLogin = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:8080/users", {
-        name: name,
-        password: password,
-      })
-      .then((response) => {
-        console.log(response);
-        localStorage.setItem("userLoginDetails", JSON.stringify(response.data));
-        const localStorageData = localStorage.getItem("userLoginDetails");
-        dispatch(userLogin(localStorageData));
-      });
+
+    const local = localStorage.getItem("userLoginDetails");
+    const parseData = JSON.parse(local);
+    console.log(parseData);
+    if (parseData.name === name && parseData.password === password) {
+      console.log("login success");
+      const localStorageData = localStorage.getItem("userLoginDetails");
+      dispatch(userLogin(localStorageData));
+      navigate("/");
+    } else {
+      console.log("login failed");
+    }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("userLoginDetails");
+    dispatch(userLogin(""));
+    navigate("/loginsignup");
+  };
+  const localStorageData = localStorage.getItem("userLoginDetails");
+  dispatch(userLogin(localStorageData));
   if (!user) {
     return (
       <div className="loginSignUp">
@@ -182,6 +186,11 @@ export const LoginSignUp = () => {
       </div>
     );
   } else {
-    return <h1>You are logged in</h1>;
+    return (
+      <>
+        <h1>You are logged in</h1>
+        <button onClick={handleLogout}>Logout</button>
+      </>
+    );
   }
 };

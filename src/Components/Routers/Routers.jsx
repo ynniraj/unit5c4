@@ -4,6 +4,7 @@ import { LoginSignUp } from "../LoginSignUp/LoginSignUp";
 import { Navbar } from "../Navbar/Navbar";
 import { AddMeetup } from "../AddMeetup/AddMeetup";
 import { Event } from "../Event/Event";
+import { NotFound } from "../NotFound/NotFound";
 export const Routers = () => {
   return (
     <>
@@ -12,7 +13,9 @@ export const Routers = () => {
         <Route path="/" element={<Home />} />
         <Route path="/loginsignup" element={<LoginSignUp />} />
         <Route path="/addmeetup" element={<AddMeetup />} />
-        <Route path="/addmeetup/events" element={<Event />} />
+        <Route path="/meetup/:id" element={<Event />} />
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

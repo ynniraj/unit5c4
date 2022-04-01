@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userLogin } from "../../Redux/Login/action";
+import { Event } from "../Event/Event";
 export const Home = () => {
   const navigate = useNavigate();
   const [meetups, setMeetups] = useState([]);
@@ -27,7 +28,7 @@ export const Home = () => {
         // Filter on the basis of Users interests and location (both true)
         meetups.map((el) => {
           return (
-            <Link to={`/addmeetup/events`} className="events">
+            <Link to={`/meetup/${el.id}`} className="events">
               <div className="event">
                 <div className="eventImage">
                   <img src={el.image} alt="eventImage" />
@@ -45,9 +46,9 @@ export const Home = () => {
         })
       }
       {/* add your children here (divs)
-              ex : title, theme, description, date, time, location, image(optional)
-              the classNames should be also : title, theme, description, date, time, location, image(optional)
-             */}
+                ex : title, theme, description, date, time, location, image(optional)
+                the classNames should be also : title, theme, description, date, time, location, image(optional)
+               */}
       <div className="subscribedData">
         <div>
           <select
@@ -70,8 +71,8 @@ export const Home = () => {
             return (
               <Link to={`add route here`} className="events">
                 {/* Each event should have these elements/children (divs):
-                    ex : title, theme, description, date, time, location, image(optional)
-                    the classNames should be also : title, theme, description, date, time, location, image(optional) */}
+                      ex : title, theme, description, date, time, location, image(optional)
+                      the classNames should be also : title, theme, description, date, time, location, image(optional) */}
               </Link>
             );
           })}

@@ -44,7 +44,7 @@ export const AddMeetup = () => {
         />
         <label>Location</label>
         <select
-          value={""}
+          value={location}
           className="location"
           onChange={(event) => {
             setLocation(event.target.value);
@@ -81,7 +81,7 @@ export const AddMeetup = () => {
         <br />
         <label>Theme</label>
         <select
-          value={""}
+          value={theme}
           className="theme"
           onChange={(event) => {
             setTheme(event.target.value);
